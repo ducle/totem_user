@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   belongs_to :role
 
-  validates :email, :first_name, :last_name, :company, presence: true
+  validates :email, :company, presence: true
   validates :email, uniqueness: true
 
   # Better than name(true) in cases when you need a way of identifying the user
