@@ -5,11 +5,14 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :encryptable,
          :recoverable, :rememberable, :trackable, :validatable
+  include TokenAuthenticatable
 
   belongs_to :role
 
   validates :email, :company, presence: true
   validates :email, uniqueness: true
+
+  after_create 'invalidate_authentication_token!'
 
   # Better than name(true) in cases when you need a way of identifying the user
   def identifier
