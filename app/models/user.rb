@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum subscription_status: [:abandoned, :active, :cancelled]
+  enum subscription_status: [:abandoned, :active, :cancelled, :charge_failed]
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -48,5 +48,9 @@ class User < ActiveRecord::Base
   alias :subscription_status_cancelled! :cancelled!
   alias :subscription_status_active! :active!
   alias :subscription_status_abandoned! :abandoned!
-
+  alias :subscription_status_charge_failed! :charge_failed!
+  alias :subscription_status_cancelled? :cancelled?
+  alias :subscription_status_active? :active?
+  alias :subscription_status_abandoned? :abandoned?
+  alias :subscription_status_charge_failed? :charge_failed?
 end
